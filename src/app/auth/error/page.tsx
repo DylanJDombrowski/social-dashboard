@@ -1,11 +1,11 @@
-// pages/auth/error.tsx
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { NextPage } from "next";
+"use client";
 
-const AuthError: NextPage = () => {
-  const router = useRouter();
-  const { message } = router.query;
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
+
+export default function AuthError() {
+  const searchParams = useSearchParams();
+  const message = searchParams.get("message");
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -14,9 +14,7 @@ const AuthError: NextPage = () => {
           Authentication Error
         </h1>
         <p className="mb-6 text-gray-700">
-          {typeof message === "string"
-            ? message
-            : "An error occurred during authentication"}
+          {message || "An error occurred during authentication"}
         </p>
         <Link
           href="/"
@@ -27,6 +25,4 @@ const AuthError: NextPage = () => {
       </div>
     </div>
   );
-};
-
-export default AuthError;
+}

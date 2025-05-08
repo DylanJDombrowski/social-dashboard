@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function TwitchConnectButton() {
   return (
-    <Link href="/connect/twitch">
+    <Link href="/api/auth/twitch">
       <button className="flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white py-3 px-6 rounded-lg transition-colors shadow-md text-lg">
         <svg
           viewBox="0 0 24 24"
