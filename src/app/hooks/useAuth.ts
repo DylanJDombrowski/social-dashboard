@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getTwitchTokens } from "@/lib/api/twitch";
+import { getTwitchToken } from "@/lib/api/twitch";
+import { getYouTubeToken } from "@/lib/api/youtube";
 
 export function useAuth() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -13,8 +14,13 @@ export function useAuth() {
       const connected: string[] = [];
 
       // Check Twitch
-      if (getTwitchTokens()) {
+      if (getTwitchToken()) {
         connected.push("twitch");
+      }
+
+      // Check YouTube
+      if (getYouTubeToken()) {
+        connected.push("youtube");
       }
 
       // Add checks for other platforms as you implement them
