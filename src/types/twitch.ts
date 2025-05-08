@@ -1,78 +1,42 @@
-// src/types/twitch.ts
+// types/twitch.ts
 
-export interface TwitchProfile {
+export interface TwitchTokenResponse {
+  access_token: string;
+  refresh_token?: string;
+  expires_in: number;
+  scope: string[];
+  token_type: string;
+}
+
+export interface TwitchUser {
+  id: string;
+  login: string;
+  display_name: string;
+  type: string;
+  broadcaster_type: string;
+  description: string;
+  profile_image_url: string;
+  offline_image_url: string;
+  view_count: number;
+  email?: string;
+  created_at: string;
+}
+
+export interface TwitchUserResponse {
+  data: TwitchUser[];
+}
+
+export interface TwitchUserInfo {
   id: string;
   login: string;
   display_name: string;
   profile_image_url: string;
-  view_count: number;
-  description?: string;
-  broadcaster_type: string;
-  created_at?: string;
-  email?: string;
+  authenticated: boolean;
+  expires_at: string;
 }
 
-export interface TwitchFollowers {
-  total: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  followers: any[];
-}
-
-export interface TwitchVideo {
-  id: string;
-  user_id: string;
-  user_name: string;
-  title: string;
-  description: string;
-  created_at: string;
-  published_at: string;
-  url: string;
-  thumbnail_url: string;
-  viewable: string;
-  view_count: number;
-  language: string;
-  type: string;
-  duration: string;
-}
-
-export interface TwitchStream {
-  id: string;
-  user_id: string;
-  user_name: string;
-  game_id: string;
-  game_name: string;
-  type: string;
-  title: string;
-  viewer_count: number;
-  started_at: string;
-  language: string;
-  thumbnail_url: string;
-  tag_ids: string[];
-  is_mature: boolean;
-}
-
-export interface TwitchChannel {
-  broadcaster_id: string;
-  broadcaster_login: string;
-  broadcaster_name: string;
-  broadcaster_language: string;
-  game_id: string;
-  game_name: string;
-  title: string;
-  delay: number;
-}
-
-export interface FollowerDataPoint {
-  name: string;
-  Twitch: number;
-}
-
-export interface TwitchData {
-  profile: TwitchProfile | null;
-  followers: TwitchFollowers;
-  videos: TwitchVideo[];
-  isLive: boolean;
-  streamInfo: TwitchStream | null;
-  channelInfo: TwitchChannel | null;
-  followerHistory: FollowerDataPoint[];
+export interface TwitchAuthError {
+  error: string;
+  status: number;
+  message: string;
 }
